@@ -12,7 +12,7 @@
 	int bnum = Integer.parseInt(request.getParameter("bnum"));
 	String title = request.getParameter("title");
 	String author = request.getParameter("author");
-	String publication = request.getParameter("publisher");
+	String publication = request.getParameter("publication");
 	int price = Integer.parseInt(request.getParameter("price"));
 
 	String driver = "com.mysql.jdbc.Driver";
@@ -33,11 +33,12 @@
 		ps.executeUpdate();
 		out.print("Success!");
 		
-		RequestDispatcher rd = request.getRequestDistaptcher("bookTitle.html");
+		RequestDispatcher rd = request.getRequestDispatcher("bookTitle.html");
 		rd.forward(request, response);
 	}
-	catch(Exception e){
-		out.print("Exception.");
+	catch(ClassNotFoundException e) {out.println("Class not found.");}
+	catch(SQLException e) {out.println(e);}
+	catch(Exception e){out.println("Exception in book.jsp.");
 	}
 %>
 </body>
