@@ -10,7 +10,7 @@ public class q4a extends Applet implements KeyListener {
 	TextField t = new TextField();
 	
 	public void init() {
-		setLayout(new GridLayout(3, 1));
+		setLayout(new GridLayout(2, 1));
 		add(enter);
 		add(t);
 		t.addKeyListener(this);
