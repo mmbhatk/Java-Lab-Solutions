@@ -12,11 +12,11 @@
 	String password = request.getParameter("password");
 	if(username.equals("admin") && password.equals("admin"))
 	{
-		out.println("Welcome " + username + "!");
 		HttpSession s = request.getSession();
-		session.setAttribute("user", username);
+		session.setAttribute("user", username);	
+		request.getRequestDispatcher("sessionTrack.jsp").forward(request, response);
 	}
-	else out.println("Login failed. Username or password is incorrect.");
+	else response.sendRedirect("/q4b/register.html");
 %>
 
 </body>
