@@ -16,17 +16,13 @@ public class CookieRead extends HttpServlet {
 		response.setContentType("text/html");
 		String name = request.getParameter("name");
 		String pid = request.getParameter("id");
-		int found = 0;
 		
 		Cookie[] cookies = request.getCookies();
 		if(cookies==null)out.println("Welcome!");
 		else {
-			for(int i = 0; i<cookies.length; i++) {
-				if(cookies[i].getName().equals(name) && cookies[i].getValue().equals(pid)) {
+			for(int i = 0; i<cookies.length; i++)
+				if(cookies[i].getName().equals(name) && cookies[i].getValue().equals(pid))
 					out.println("Welcome back, " + name + "!");
-					found = 1;
-				}
-			}
 		}
 	}
 
