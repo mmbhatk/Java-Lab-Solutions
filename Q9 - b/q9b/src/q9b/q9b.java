@@ -17,6 +17,7 @@ public class q9b {
 			Class.forName(driver);
 			Connection con = DriverManager.getConnection(url+dbName, username, password);
 			con.setAutoCommit(false);
+			Savepoint sp = con.setSavepoint();
 			
 			do {
 				System.out.println("\n1) Create new account");
@@ -25,8 +26,8 @@ public class q9b {
 				System.out.println("4) Rollback");
 				System.out.println("5) Commit");
 				System.out.println("6) Display");
+				System.out.println("7) Create Savepoint");
 				System.out.println("Enter any other digit to exit.");
-				
 				
 				int choice = scan.nextInt();
 				String name;
@@ -70,7 +71,7 @@ public class q9b {
 						ps.executeUpdate();
 						break;
 						
-				case 4: con.rollback();
+				case 4: con.rollback(sp);
 						System.out.println("\nSuccessfully rollbacked.");
 						break;
 						
@@ -86,7 +87,9 @@ public class q9b {
 							System.out.println("Balance: " + rs.getInt(3));
 						}
 						break;
-				default: System.exit(0);
+				case 7: sp = con.setSavepoint();
+						break;
+				default:System.exit(0);
 				}
 			}while(true);
 		}
